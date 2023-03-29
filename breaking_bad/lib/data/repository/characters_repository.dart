@@ -4,7 +4,7 @@ import 'package:breaking_bad/data/web/characters_api.dart';
 
 class CharactersRepository {
   final CharactersAPI charactersAPI;
-  CharactersRepository({required this.charactersAPI});
+  CharactersRepository(this.charactersAPI);
 
   Future<List<Character>> getAllCharacter() async {
     final character = await charactersAPI.getAllCharacter();

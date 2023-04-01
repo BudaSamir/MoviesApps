@@ -1,6 +1,7 @@
 import 'package:breaking_bad/constants/colors.dart';
 import 'package:breaking_bad/data/models/characters.dart';
 import 'package:breaking_bad/domain/cubit/characters_cubit.dart';
+import 'package:breaking_bad/presentation/widgets/character_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,7 +55,9 @@ class _CharactersScreenState extends State<CharactersScreen> {
         padding: EdgeInsets.zero,
         itemCount: allCharacter.length,
         itemBuilder: (BuildContext context, int index) {
-          return;
+          return CharacterItem(
+            character: allCharacter[index],
+          );
         });
   }
 

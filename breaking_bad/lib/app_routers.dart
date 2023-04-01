@@ -1,3 +1,5 @@
+// ignore_for_file: body_might_complete_normally_nullable
+
 import 'package:breaking_bad/constants/strings.dart';
 import 'package:breaking_bad/data/repository/characters_repository.dart';
 import 'package:breaking_bad/data/web/characters_api.dart';

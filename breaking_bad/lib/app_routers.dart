@@ -1,6 +1,7 @@
 // ignore_for_file: body_might_complete_normally_nullable
 
 import 'package:breaking_bad/constants/strings.dart';
+import 'package:breaking_bad/data/models/characters.dart';
 import 'package:breaking_bad/data/repository/characters_repository.dart';
 import 'package:breaking_bad/data/web/characters_api.dart';
 import 'package:breaking_bad/domain/cubit/characters_cubit.dart';
@@ -27,8 +28,11 @@ class AppRouter {
                 child: const CharactersScreen()));
 
       case characterDetailsScreen:
+        final character = settings.arguments as Character;
         return MaterialPageRoute(
-            builder: (_) => const CharacterDetailsScreen());
+            builder: (_) => CharacterDetailsScreen(
+                  character: character,
+                ));
     }
   }
 }

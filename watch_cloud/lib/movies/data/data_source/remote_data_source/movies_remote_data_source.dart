@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:watch_cloud/core/error/exception.dart';
+import 'package:watch_cloud/core/network/error_message_model.dart';
 import 'package:watch_cloud/movies/data/models/movies_model.dart';
 
 class MovieRemoteDataSource {
@@ -9,7 +11,8 @@ class MovieRemoteDataSource {
       return List<MoviesModel>.from(
           (response.data["results"] as List).map((json) => MoviesModel.fromJson(json)));
     } else{
-      throw Exception("API Error");
+      final ErrorMessageModel errorMessageModel = ErrorMessageModel.fromJson(response.data);
+      throw ServerException(errorMessageModel: errorMessageModel);
     }
   }
 }

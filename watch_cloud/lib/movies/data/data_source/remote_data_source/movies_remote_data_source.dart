@@ -8,6 +8,7 @@ abstract class BaseMovieRemoteDataSource {
   Future<List<MoviesModel>> getNowPlayingMovies();
   Future<List<MoviesModel>> getPopularMovies();
   Future<List<MoviesModel>> getTopRatedMovies();
+  Future<List<MoviesModel>> getUpComingMovies();
 }
 
 class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
@@ -25,14 +26,41 @@ class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
   }
 
   @override
-  Future<List<MoviesModel>> getPopularMovies() {
-    // TODO: implement getPopularMovies
-    throw UnimplementedError();
+  Future<List<MoviesModel>> getPopularMovies() async {
+    final response = await Dio().get(ApiConstants.popularMoviesPath);
+    if (response.statusCode == 200) {
+      return List<MoviesModel>.from((response.data["results"] as List)
+          .map((json) => MoviesModel.fromJson(json)));
+    } else {
+      final ErrorMessageModel errorMessageModel =
+      ErrorMessageModel.fromJson(response.data);
+      throw ServerException(errorMessageModel: errorMessageModel);
+    }
   }
 
   @override
-  Future<List<MoviesModel>> getTopRatedMovies() {
-    // TODO: implement getTopRatedMovies
-    throw UnimplementedError();
+  Future<List<MoviesModel>> getTopRatedMovies() async {
+    final response = await Dio().get(ApiConstants.topRatedMoviesPath);
+    if (response.statusCode == 200) {
+      return List<MoviesModel>.from((response.data["results"] as List)
+          .map((json) => MoviesModel.fromJson(json)));
+    } else {
+      final ErrorMessageModel errorMessageModel =
+      ErrorMessageModel.fromJson(response.data);
+      throw ServerException(errorMessageModel: errorMessageModel);
+    }
+  }
+
+  @override
+  Future<List<MoviesModel>> getUpComingMovies() async {
+    final response = await Dio().get(ApiConstants.upComingMoviesPath);
+    if (response.statusCode == 200) {
+      return List<MoviesModel>.from((response.data["results"] as List)
+          .map((json) => MoviesModel.fromJson(json)));
+    } else {
+      final ErrorMessageModel errorMessageModel =
+      ErrorMessageModel.fromJson(response.data);
+      throw ServerException(errorMessageModel: errorMessageModel);
+    }
   }
 }

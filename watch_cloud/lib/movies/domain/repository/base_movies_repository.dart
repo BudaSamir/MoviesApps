@@ -4,4 +4,5 @@ abstract class BaseMoviesRepository {
   Future<List<Movies>> getNowPlayingMovies();
   Future<List<Movies>> getPopularMovies();
   Future<List<Movies>> getTopRatedMovies();
+  Future<List<Movies>> getUpComingMovies();
 }

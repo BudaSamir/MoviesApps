@@ -6,7 +6,7 @@ class GetNowPlayingMoviesUseCase {
   final BaseMoviesRepository baseMoviesRepository;
   GetNowPlayingMoviesUseCase({required this.baseMoviesRepository});
 
-  Future<List<Movies>> execute() {
-    return baseMoviesRepository.getNowPlayingMovies();
+  Future<List<Movies>> execute() async {
+    return await baseMoviesRepository.getNowPlayingMovies();
   }
 }

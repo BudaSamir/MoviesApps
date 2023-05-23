@@ -1,18 +1,38 @@
 import 'package:dio/dio.dart';
 import 'package:watch_cloud/core/error/exception.dart';
+import 'package:watch_cloud/core/network/api_constants.dart';
 import 'package:watch_cloud/core/network/error_message_model.dart';
 import 'package:watch_cloud/movies/data/models/movies_model.dart';
 
-class MovieRemoteDataSource {
-  getNowPlayingMovies() async {
-    final response = await Dio().get(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=15c5a86f88b357bac4367a856db0e6f3");
+abstract class BaseMovieRemoteDataSource {
+  Future<List<MoviesModel>> getNowPlayingMovies();
+  Future<List<MoviesModel>> getPopularMovies();
+  Future<List<MoviesModel>> getTopRatedMovies();
+}
+
+class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
+  @override
+  Future<List<MoviesModel>> getNowPlayingMovies() async {
+    final response = await Dio().get(ApiConstants.nowPlayingMoviesPath);
     if (response.statusCode == 200) {
-      return List<MoviesModel>.from(
-          (response.data["results"] as List).map((json) => MoviesModel.fromJson(json)));
-    } else{
-      final ErrorMessageModel errorMessageModel = ErrorMessageModel.fromJson(response.data);
+      return List<MoviesModel>.from((response.data["results"] as List)
+          .map((json) => MoviesModel.fromJson(json)));
+    } else {
+      final ErrorMessageModel errorMessageModel =
+          ErrorMessageModel.fromJson(response.data);
       throw ServerException(errorMessageModel: errorMessageModel);
     }
+  }
+
+  @override
+  Future<List<MoviesModel>> getPopularMovies() {
+    // TODO: implement getPopularMovies
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<MoviesModel>> getTopRatedMovies() {
+    // TODO: implement getTopRatedMovies
+    throw UnimplementedError();
   }
 }

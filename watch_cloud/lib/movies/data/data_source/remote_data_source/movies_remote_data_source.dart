@@ -11,10 +11,11 @@ abstract class BaseMovieRemoteDataSource {
   Future<List<MoviesModel>> getUpComingMovies();
 }
 
-class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
+class MovieRemoteDataSource implements BaseMovieRemoteDataSource {
   @override
   Future<List<MoviesModel>> getNowPlayingMovies() async {
     final response = await Dio().get(ApiConstants.nowPlayingMoviesPath);
+    print(response);
     if (response.statusCode == 200) {
       return List<MoviesModel>.from((response.data["results"] as List)
           .map((json) => MoviesModel.fromJson(json)));
@@ -33,7 +34,7 @@ class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
           .map((json) => MoviesModel.fromJson(json)));
     } else {
       final ErrorMessageModel errorMessageModel =
-      ErrorMessageModel.fromJson(response.data);
+          ErrorMessageModel.fromJson(response.data);
       throw ServerException(errorMessageModel: errorMessageModel);
     }
   }
@@ -46,7 +47,7 @@ class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
           .map((json) => MoviesModel.fromJson(json)));
     } else {
       final ErrorMessageModel errorMessageModel =
-      ErrorMessageModel.fromJson(response.data);
+          ErrorMessageModel.fromJson(response.data);
       throw ServerException(errorMessageModel: errorMessageModel);
     }
   }
@@ -59,7 +60,7 @@ class MovieRemoteDataSource implements BaseMovieRemoteDataSource{
           .map((json) => MoviesModel.fromJson(json)));
     } else {
       final ErrorMessageModel errorMessageModel =
-      ErrorMessageModel.fromJson(response.data);
+          ErrorMessageModel.fromJson(response.data);
       throw ServerException(errorMessageModel: errorMessageModel);
     }
   }

@@ -5,12 +5,13 @@ import 'package:watch_cloud/movies/domain/repository/base_movies_repository.dart
 
 import '../../../core/error/failure.dart';
 
-class GetUpComingMoviesUseCase implements BaseUseCases<List<Movies>,> {
+class GetUpComingMoviesUseCase
+    implements BaseUseCases<List<Movies>, NoParameters> {
   final BaseMoviesRepository baseMoviesRepository;
   const GetUpComingMoviesUseCase({required this.baseMoviesRepository});
 
   @override
-  Future<Either<Failure, List<Movies>>> call() async {
+  Future<Either<Failure, List<Movies>>> call(NoParameters parameters) async {
     return await baseMoviesRepository.getUpComingMovies();
   }
 }

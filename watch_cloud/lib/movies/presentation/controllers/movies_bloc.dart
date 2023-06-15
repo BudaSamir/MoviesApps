@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watch_cloud/core/usecase/base_usecases.dart';
 import 'package:watch_cloud/core/utils/enums.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_top_rated_movies_usecase.dart';
@@ -18,7 +19,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
       : super(const MoviesState()) {
     // Now Playing Movies
     on<GetNowPlayingMoviesEvent>((event, emit) async {
-      final result = await getNowPlayingMoviesUseCase(); // Callable Class
+      final result = await getNowPlayingMoviesUseCase(
+          const NoParameters()); // Callable Class
       result.fold(
           (l) => emit(state.copyWith(
                 nowPlayingState: RequestState.error,
@@ -31,7 +33,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     });
     // Popular Movies
     on<GetPopularMoviesEvent>((event, emit) async {
-      final result = await getPopularMoviesUseCase(); // Callable Class
+      final result =
+          await getPopularMoviesUseCase(const NoParameters()); // Callable Class
       result.fold(
           (l) => emit(state.copyWith(
                 popularState: RequestState.error,
@@ -44,7 +47,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     });
     // Top Rated Movies
     on<GetTopRatedMoviesEvent>((event, emit) async {
-      final result = await getTopRatedMoviesUseCase(); // Callable Class
+      final result = await getTopRatedMoviesUseCase(
+          const NoParameters()); // Callable Class
       result.fold(
           (l) => emit(state.copyWith(
                 topRatedState: RequestState.error,
@@ -57,7 +61,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     });
     // Up Coming Movies
     on<GetUpComingMoviesEvent>((event, emit) async {
-      final result = await getUpComingMoviesUseCase(); // Callable Class
+      final result = await getUpComingMoviesUseCase(
+          const NoParameters()); // Callable Class
       result.fold(
           (l) => emit(state.copyWith(
                 upComingState: RequestState.error,

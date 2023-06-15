@@ -5,7 +5,7 @@ import 'package:watch_cloud/movies/domain/repository/base_movies_repository.dart
 
 import '../../../core/error/failure.dart';
 
-class GetUpComingMoviesUseCase implements BaseUseCases<List<Movies>> {
+class GetUpComingMoviesUseCase implements BaseUseCases<List<Movies>,> {
   final BaseMoviesRepository baseMoviesRepository;
   const GetUpComingMoviesUseCase({required this.baseMoviesRepository});
 

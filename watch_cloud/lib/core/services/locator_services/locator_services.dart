@@ -6,8 +6,7 @@ import 'package:watch_cloud/movies/domain/usecases/get_now_playing_movies_usecas
 import 'package:watch_cloud/movies/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_top_rated_movies_usecase.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_up_coming_movies_usecase.dart';
-
-import '../../../movies/presentation/controllers/movies_bloc.dart';
+import 'package:watch_cloud/movies/presentation/controllers/movies_controller/movies_bloc.dart';
 
 var ls = GetIt.instance;
 

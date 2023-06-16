@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:watch_cloud/core/utils/enums.dart';
 
-import '../../domain/entities/movies.dart';
+import '../../../domain/entities/movies.dart';
 
 class MoviesState extends Equatable {
   // Now Playing Movies

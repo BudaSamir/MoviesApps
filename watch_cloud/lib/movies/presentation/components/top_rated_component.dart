@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:watch_cloud/core/network/api_constants.dart';
 import 'package:watch_cloud/core/utils/enums.dart';
-import 'package:watch_cloud/movies/presentation/controllers/movies_bloc.dart';
-import 'package:watch_cloud/movies/presentation/controllers/movies_state.dart';
+import 'package:watch_cloud/movies/presentation/controllers/movies_controller/movies_bloc.dart';
+import 'package:watch_cloud/movies/presentation/controllers/movies_controller/movies_state.dart';
 
 class TopRatedComponent extends StatelessWidget {
   const TopRatedComponent({Key? key}) : super(key: key);

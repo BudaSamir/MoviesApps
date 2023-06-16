@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_cloud/core/usecase/base_usecases.dart';
 import 'package:watch_cloud/core/utils/enums.dart';
+import 'package:watch_cloud/movies/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_top_rated_movies_usecase.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_up_coming_movies_usecase.dart';
+import 'package:watch_cloud/movies/presentation/controllers/movies_controller/movies_state.dart';
 
-import '../../domain/usecases/get_now_playing_movies_usecase.dart';
 import 'movies_event.dart';
-import 'movies_state.dart';
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   final GetNowPlayingMoviesUseCase getNowPlayingMoviesUseCase;

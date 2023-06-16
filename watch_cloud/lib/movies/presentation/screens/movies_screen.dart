@@ -6,8 +6,8 @@ import 'package:watch_cloud/movies/presentation/components/now_playing_component
 import 'package:watch_cloud/movies/presentation/components/popular_component.dart';
 import 'package:watch_cloud/movies/presentation/components/top_rated_component.dart';
 import 'package:watch_cloud/movies/presentation/components/up_coming_component.dart';
-import 'package:watch_cloud/movies/presentation/controllers/movies_bloc.dart';
-import 'package:watch_cloud/movies/presentation/controllers/movies_event.dart';
+import 'package:watch_cloud/movies/presentation/controllers/movies_controller/movies_bloc.dart';
+import 'package:watch_cloud/movies/presentation/controllers/movies_controller/movies_event.dart';
 
 class MainMoviesScreen extends StatelessWidget {
   const MainMoviesScreen({Key? key}) : super(key: key);

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:watch_cloud/core/error/exception.dart';
 import 'package:watch_cloud/core/network/api_constants.dart';
 import 'package:watch_cloud/core/network/error_message_model.dart';
+import 'package:watch_cloud/movies/data/models/movie_details_model.dart';
 import 'package:watch_cloud/movies/data/models/movies_model.dart';
 import 'package:watch_cloud/movies/domain/entities/movie_details.dart';
 import 'package:watch_cloud/movies/domain/usecases/get_movie_details_usecase.dart';
@@ -68,8 +69,16 @@ class MovieRemoteDataSource implements BaseMovieRemoteDataSource {
   }
 
   @override
-  Future<MovieDetails> getMovieDetails(MovieDetailsParameters parameters) {
-    // TODO: implement getMovieDetails
-    throw UnimplementedError();
+  Future<MovieDetails> getMovieDetails(
+      MovieDetailsParameters parameters) async {
+    final response =
+        await Dio().get(ApiConstants.movieDetailsPath(parameters.movieId));
+    if (response.statusCode == 200) {
+      return MovieDetailsModel.fromJson(response.data);
+    } else {
+      final ErrorMessageModel errorMessageModel =
+          ErrorMessageModel.fromJson(response.data);
+      throw ServerException(errorMessageModel: errorMessageModel);
+    }
   }
 }
